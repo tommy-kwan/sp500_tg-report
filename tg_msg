@@ -1,0 +1,20 @@
+def telegram_bot_sendtext(bot_message):
+    bot_token = YOUR BOT TOKEN HERE
+    bot_chatID = YOUR CHART ID HERE
+    send_text = 'https://api.telegram.org/bot{bot_token}/sendMessage?chat_id={bot_chatID}&parse_mode=Markdown&text={bot_message}'.format(**locals())
+    response = requests.get(send_text)
+    return response.json()
+
+
+if issendtg == True:
+    timediff = 8
+    today = datetime.now() + timedelta(hours = timediff)
+    print(today)
+    all_true_tg = 'The stock that is meet all requirement: \n{all_true}'.format(**locals())
+    summary_tg = 'There are {count_all_true} stocks are strong.'.format(**locals())
+    run_time = str(time2-time1)
+    run_time_tg = 'Total run time: {run_time}'.format(**locals())
+    output_= 'SP500 stock result:\n\n' + all_true_tg +'\n\n' +summary_tg + '\n\n Result auto generated at ' + today.strftime('%m-%d-%Y, %H:%M:%S') + '\n\nThis is send from workbook "Telegram stock summary, ' + run_time_tg
+    telegram_bot_sendtext(output_)
+else:
+    print("No data send out today")
